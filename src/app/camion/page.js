@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '../app/camion/camion.module.css';
+import styles from './camion.module.css'; // Importar el archivo CSS
 
 export default function CamionPage() {
   const [camiones, setCamiones] = useState([]);
@@ -18,7 +18,7 @@ export default function CamionPage() {
       })
       .then((data) => {
         setCamiones(data);
-        setFilteredData(data); // Inicializa los datos filtrados con todos los datos
+        setFilteredData(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -27,18 +27,11 @@ export default function CamionPage() {
       });
   }, []);
 
-  // Actualiza los datos filtrados cuando el filtro cambia
   useEffect(() => {
     setFilteredData(
-      camiones.filter((camion) => {
-        const searchValue = filter.toLowerCase();
-        return (
-          camion.Nombre.toLowerCase().includes(searchValue) ||
-          camion.Totalmacenaje.toString().includes(searchValue) ||
-          camion.Placas.toLowerCase().includes(searchValue) ||
-          camion.Marca.toLowerCase().includes(searchValue)
-        );
-      })
+      camiones.filter((camion) =>
+        camion.Nombre.toLowerCase().includes(filter.toLowerCase())
+      )
     );
   }, [filter, camiones]);
 
@@ -55,9 +48,9 @@ export default function CamionPage() {
       <h1 className={styles.heading}>Lista de Camiones</h1>
       <input
         type="text"
-        placeholder="Buscar por nombre, marca, tonelaje o placa........"
+        placeholder="Buscar por nombre"
         value={filter}
-        onChange={(e) => setFilter(e.target.value)} // Actualiza el filtro
+        onChange={(e) => setFilter(e.target.value)}
         className={styles.search}
       />
       <table className={styles.table}>

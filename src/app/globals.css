@@ -1,12 +1,22 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f9fa; /* Fondo claro */
+  --foreground: #343a40; /* Texto oscuro */
+  --primary-color: #007bff; /* Azul para resaltar */
+  --table-header-bg: #6c757d; /* Fondo del encabezado de la tabla */
+  --table-header-text: #ffffff; /* Texto del encabezado */
+  --table-row-hover: #e9ecef; /* Fondo al pasar el mouse en modo claro */
+  --table-border: #dee2e6; /* Bordes de la tabla */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #212529; /* Fondo oscuro */
+    --foreground: #f8f9fa; /* Texto claro */
+    --primary-color: #0dcaf0; /* Color cian para resaltar */
+    --table-header-bg: #343a40; /* Fondo del encabezado en oscuro */
+    --table-header-text: #ffffff; /* Texto del encabezado */
+    --table-row-hover: #495057; /* Fondo al pasar el mouse en modo oscuro */
+    --table-border: #6c757d; /* Bordes de la tabla */
   }
 }
 
@@ -39,4 +49,61 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+/* Tabla global */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar la tabla */
+}
+
+th,
+td {
+  border: 1px solid var(--table-border);
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: var(--table-header-bg);
+  color: var(--table-header-text);
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: var(--table-row-hover);
+}
+
+tr:hover {
+  background-color: var(--primary-color);
+  color: var(--table-header-text);
+}
+
+/* Estilo del campo de búsqueda */
+input[type="text"] {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 10px;
+  width: 50%;
+  border: 1px solid var(--table-border);
+  border-radius: 4px;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+input[type="text"]::placeholder {
+  color: var(--foreground);
+  opacity: 0.6;
+}
+
+/* Encabezado de la página */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--primary-color);
 }
